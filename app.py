@@ -1,9 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-
-username = 'robotrobi010192@gmail.com'
-password = 'Robotrobi92'
+from random import randint
 
 
 class InstaBot():
@@ -12,7 +10,10 @@ class InstaBot():
         self.username = username
         self.password = password
         self.bot = webdriver.Chrome("C:/Users/IvanSijan/Downloads/chromedriver_win32/chromedriver.exe")
-        
+       
+    def fullSizeScreen(self):  
+        bot =self.bot
+        bot.maximize_window()
     
     def notification_1(self):
         bot = self.bot
@@ -26,16 +27,14 @@ class InstaBot():
         bot = self.bot
         bot.find_element_by_name("username").send_keys(self.username)
         bot.find_element_by_name("password").send_keys(self.password + Keys.RETURN)
-        time.sleep(3)
     
     def notification_2(self):
         bot = self.bot
         bot.find_element_by_xpath('/html/body/div[1]/section/main/div/div/div/div/button').click()
         
-    def hashtag(self,hashtag):
+    def notification_3(self):
         bot = self.bot
-        bot.get("https://www.instagram.com/explore/tags/" + hashtag + '/')
-        
+        bot.find_element_by_xpath('/html/body/div[5]/div/div/div/div[3]/button[2]').click()    
         
         
     def person(self,person):
@@ -46,40 +45,60 @@ class InstaBot():
     def likeFirstPhoto(self):
         bot = self.bot
         bot.find_element_by_class_name('v1Nh3').click()
-        time.sleep(1)
+        time.sleep(randint(1,3))
         bot.find_element_by_class_name('fr66n').click()
-        time.sleep(1)
+        time.sleep(randint(1,3))
         bot.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div/button').click()
         
         
-    def likephotos(self,amount):
+    def likePhotos(self,amount):
         bot = self.bot
         
         i = 1
         while i <= amount:
-            time.sleep(1)
+            time.sleep(randint(1,5))
             bot.find_element_by_class_name('fr66n').click()
             bot.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div[2]/button').click()
         
             i += 1
             
-        bot.get('https://www.instagram.com/' + self.username)
+        bot.get('https://www.instagram.com/' + 'bogda2709')
         
-        
-insta = InstaBot('robotrobi010192@gmail.com','Robotrobi92')
+    def hashtag(self,hashtag):
+        bot = self.bot
+        hashtag = ['manwithbeard','longhairdontcare','hockeybenders','cooldads']
+        for has in hashtag:
+            bot.get("https://www.instagram.com/explore/tags/" + has + '/')
+            time.sleep(randint(1,3))
+            self.likeFirstPhoto()
+            self.likePhotos(3)
+            
+
+
+insta = InstaBot('robotantonio6','robotantonio66')
+insta.fullSizeScreen()
+time.sleep(randint(1,2))
+
 insta.goToInsta()
-time.sleep(2)
+time.sleep(randint(1,3))
+
 insta.notification_1()
-time.sleep(1)
+time.sleep(randint(1,3))
+
 insta.login()
-time.sleep(2)
+time.sleep(randint(1,3))
+
 insta.notification_2()
-time.sleep(1)
-insta.person('andrea_britvec')
-time.sleep(2)
-#insta.hashtag("newyork")
-#time.sleep(1)
-insta.likeFirstPhoto()
-time.sleep(1)
-insta.likephotos(11)
+time.sleep(randint(1,3))
+
+insta.notification_3()
+time.sleep(randint(1,3))
+#insta.person('ivan_sijan')
+#time.sleep(randint(1,3))#
+#insta.likeFirstPhoto()
+#time.sleep(randint(1,3))
+#insta.likePhotos(74)
+insta.hashtag('has')
+time.sleep(randint(1,3))
+
     
