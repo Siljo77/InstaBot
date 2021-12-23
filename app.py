@@ -40,15 +40,28 @@ class InstaBot():
     def person(self,person):
         bot = self.bot
         bot.get("https://www.instagram.com/" + person + '/')
+        time.sleep(randint(1,3))
+        self.likeFirstPhoto()
+        #self.likePhotos(6)
+        
+        bot.get('https://www.instagram.com/' + 'bogda2709')
+        
+    
+    def follow(self):
+        bot = self.bot
+        bot.find_element_by_class_name('bY2yH').click()
         
         
     def likeFirstPhoto(self):
         bot = self.bot
         bot.find_element_by_class_name('v1Nh3').click()
-        time.sleep(randint(1,3))
-        bot.find_element_by_class_name('fr66n').click()
-        time.sleep(randint(1,3))
+        time.sleep(randint(1,4))
+        bot.find_element_by_class_name('fr66n')
+        time.sleep(randint(1,4))
+        bot.find_element_by_xpath('/html/body/div[6]/div[2]/div/article/div/div[2]/div/div/div[1]/div/header/div[2]/div[1]/div[2]/button').click()
+        time.sleep(randint(1,4))
         bot.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div/button').click()
+        
         
         
     def likePhotos(self,amount):
@@ -56,13 +69,12 @@ class InstaBot():
         
         i = 1
         while i <= amount:
-            time.sleep(randint(1,5))
+            time.sleep(randint(1,4))
             bot.find_element_by_class_name('fr66n').click()
             bot.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div[2]/button').click()
         
             i += 1
             
-        bot.get('https://www.instagram.com/' + 'bogda2709')
         
     def hashtag(self,hashtag):
         bot = self.bot
@@ -71,8 +83,10 @@ class InstaBot():
             bot.get("https://www.instagram.com/explore/tags/" + has + '/')
             time.sleep(randint(1,3))
             self.likeFirstPhoto()
+            self.follow()
             self.likePhotos(3)
             
+        bot.get('https://www.instagram.com/' + 'bogda2709')
 
 
 insta = InstaBot('robotantonio6','robotantonio66')
@@ -93,12 +107,12 @@ time.sleep(randint(1,3))
 
 insta.notification_3()
 time.sleep(randint(1,3))
-#insta.person('ivan_sijan')
+insta.person('bogda2709')
 #time.sleep(randint(1,3))#
 #insta.likeFirstPhoto()
 #time.sleep(randint(1,3))
 #insta.likePhotos(74)
-insta.hashtag('has')
-time.sleep(randint(1,3))
+#insta.hashtag('has')
+#time.sleep(randint(1,3))
 
     
