@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 from random import randint
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -34,12 +35,12 @@ class InstaBot():
     
     def notification_2(self):
         bot = self.bot
-        ui.WebDriverWait(bot, 7).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
+        ui.WebDriverWait(bot, 8).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
         
         
     def notification_3(self):
         bot = self.bot
-        ui.WebDriverWait(bot, 2).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[5]/div/div/div/div[3]/button[2]"))).click() 
+        ui.WebDriverWait(bot, 4).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[5]/div/div/div/div[3]/button[2]"))).click() 
         
         
     def person(self,person):
@@ -48,6 +49,7 @@ class InstaBot():
         self.likeFirstPhoto()
         #self.likePhotos()
         
+        
     def likeFirstPhoto(self):
         bot = self.bot
         # open a pikcure
@@ -55,8 +57,7 @@ class InstaBot():
         open_pikcure.click()
         time.sleep(randint(1,3))
         # like the pikcure
-        like = bot.find_element_by_class_name('fr66n')
-        like.click()
+        self.like()
         time.sleep(randint(1,3))
         # follow
         self.follow()
@@ -74,17 +75,25 @@ class InstaBot():
         except:
              pass
        
-            
+       
+    def like(self):
+        bot = self.bot
+         # like the pikcure
+        try:
+            like_if = bot.find_element_by_xpath("/html/body/div[6]/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/button/div[2]")
+            like_if.click()
+        except:
+             pass
+       
         
     def likePhotos(self,amount):
         bot = self.bot
-        
+        time.sleep(randint(1,2))
         i = 1
         while i <= amount:
             time.sleep(randint(1,5))
-            # like the pikcure a pikcure
-            like = bot.find_element_by_class_name('fr66n')
-            like.click()
+            # like the pikcure 
+            self.like()
             time.sleep(randint(1,2))
             # folow user
             self.follow()
