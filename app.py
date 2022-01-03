@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 from random import randint
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -16,22 +15,27 @@ class InstaBot():
         self.password = password
         self.bot = webdriver.Chrome('/Users/ivansijan/Desktop/chromedriver')
        
+       
     def fullSizeScreen(self):  
         bot =self.bot
         bot.maximize_window()
+    
     
     def notification_1(self):
         bot = self.bot
         bot.find_element_by_xpath('/html/body/div[4]/div/div/button[1]').click()
     
+    
     def goToInsta(self):
         bot = self.bot
         bot.get('http://instagram.com')
+        
         
     def login(self):
         bot = self.bot
         bot.find_element_by_name("username").send_keys(self.username)
         bot.find_element_by_name("password").send_keys(self.password + Keys.RETURN)
+    
     
     def notification_2(self):
         bot = self.bot
@@ -48,23 +52,6 @@ class InstaBot():
         bot.get("https://www.instagram.com/" + person + '/')
         self.likeFirstPhoto()
         #self.likePhotos()
-        
-        
-    def likeFirstPhoto(self):
-        bot = self.bot
-        # open a pikcure
-        open_pikcure =bot.find_element_by_class_name('v1Nh3')
-        open_pikcure.click()
-        time.sleep(randint(1,3))
-        # like the pikcure
-        self.like()
-        time.sleep(randint(1,3))
-        # follow
-        self.follow()
-        time.sleep(randint(1,3))
-        # click next pikcure
-        next_pikcure = bot.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div/button')
-        next_pikcure.click()
                                    
      
     def follow(self):
@@ -84,6 +71,23 @@ class InstaBot():
             like_if.click()
         except:
              pass
+         
+         
+    def likeFirstPhoto(self):
+        bot = self.bot
+        # open a pikcure
+        open_pikcure =bot.find_element_by_class_name('v1Nh3')
+        open_pikcure.click()
+        time.sleep(randint(1,3))
+        # like the pikcure
+        self.like()
+        time.sleep(randint(1,3))
+        # follow
+        self.follow()
+        time.sleep(randint(1,3))
+        # click next pikcure
+        next_pikcure = bot.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div/button')
+        next_pikcure.click()
        
         
     def likePhotos(self,amount):
@@ -106,7 +110,6 @@ class InstaBot():
             i += 1
             
             
-        
     def hashtag(self,hashtag):
         bot = self.bot
         hashtag = ['bangtan'] #'robotica','seleniumwebdriver','pythonprogramming','instabots','bots',
@@ -139,13 +142,19 @@ time.sleep(randint(1,3))
 
 insta.notification_3()
 time.sleep(randint(1,3))
-#insta.person('bogda2709')
-#time.sleep(randint(1,3))
-#insta.likeFirstPhoto()
-#time.sleep(randint(1,3))
-#insta.likePhotos(74)
+
 insta.hashtag('has')
 time.sleep(randint(1,3))
+
+#insta.person('bogda2709')
 #time.sleep(randint(1,3))
+
+#insta.likeFirstPhoto()
+#time.sleep(randint(1,3))
+
+#insta.likePhotos(74)
+#time.sleep(randint(1,3))
+
+
 
     
