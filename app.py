@@ -34,7 +34,7 @@ class InstaBot():
     
     def notification_2(self):
         bot = self.bot
-        ui.WebDriverWait(bot, 9).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
+        ui.WebDriverWait(bot, 7).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
         
         
     def notification_3(self):
@@ -68,8 +68,11 @@ class InstaBot():
      
     def follow(self):
         bot = self.bot
-        Follow_Button = bot.find_element_by_xpath("/html/body/div[6]/div[2]/div/article/div/div[2]/div/div/div[1]/div/header/div[2]/div[1]/div[2]/button")
-        Follow_Button.click()
+        try:
+            Follow_Button = bot.find_element_by_xpath("//*[text()='Follow']")
+            Follow_Button.click()
+        except:
+             pass
        
             
         
@@ -97,7 +100,7 @@ class InstaBot():
         
     def hashtag(self,hashtag):
         bot = self.bot
-        hashtag = ['manwithbun'] #'robotica','seleniumwebdriver','pythonprogramming','instabots','bots',
+        hashtag = ['bangtan'] #'robotica','seleniumwebdriver','pythonprogramming','instabots','bots',
         for has in hashtag:
             bot.get("https://www.instagram.com/explore/tags/" + has + '/')
             time.sleep(randint(1,3))
@@ -108,6 +111,7 @@ class InstaBot():
     
         bot.get('https://www.instagram.com/' + 'bogda2709')
         
+      
     
 insta = InstaBot('ivan.sijan@gmail.com','Medvescak77')
 insta.fullSizeScreen()
