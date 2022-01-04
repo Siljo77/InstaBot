@@ -39,12 +39,12 @@ class InstaBot():
     
     def notification_2(self):
         bot = self.bot
-        ui.WebDriverWait(bot, 8).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
+        ui.WebDriverWait(bot, 7).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
         
         
     def notification_3(self):
         bot = self.bot
-        ui.WebDriverWait(bot, 4).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[5]/div/div/div/div[3]/button[2]"))).click() 
+        ui.WebDriverWait(bot, 3).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[5]/div/div/div/div[3]/button[2]"))).click() 
         
         
     def person(self,person):
@@ -53,16 +53,7 @@ class InstaBot():
         self.likeFirstPhoto()
         #self.likePhotos()
                                    
-     
-    def follow(self):
-        bot = self.bot
-        try:
-            Follow_Button = bot.find_element_by_xpath("//*[text()='Follow']")
-            Follow_Button.click()
-        except:
-             pass
-       
-       
+    
     def like(self):
         bot = self.bot
          # like the pikcure
@@ -86,8 +77,17 @@ class InstaBot():
         self.follow()
         time.sleep(randint(1,3))
         # click next pikcure
-        next_pikcure = bot.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div/button')
+        next_pikcure = bot.find_element_by_xpath("html/body/div[6]/div[1]/div/div/div/button")
         next_pikcure.click()
+        
+        
+    def follow(self):
+        bot = self.bot
+        try:
+            follow_button = bot.find_element_by_xpath("//*[text()='Follow']")
+            follow_button.click()
+        except:
+             pass
        
         
     def likePhotos(self,amount):
@@ -114,18 +114,20 @@ class InstaBot():
         bot = self.bot
         hashtag = ['bangtan'] #'robotica','seleniumwebdriver','pythonprogramming','instabots','bots',
         for has in hashtag:
+            time.sleep(randint(1,3))
             bot.get("https://www.instagram.com/explore/tags/" + has + '/')
             time.sleep(randint(1,3))
             self.likeFirstPhoto()
-            time.sleep(randint(1,2))
+            time.sleep(randint(1,3))
             self.likePhotos(20)
             
     
-        bot.get('https://www.instagram.com/' + 'bogda2709')
+        bot.get('https://www.instagram.com/' + 'robotantonio6')
         
       
     
-insta = InstaBot('ivan.sijan@gmail.com','Medvescak77')
+insta = InstaBot('robotantonio6','robotantonio66')
+
 insta.fullSizeScreen()
 
 insta.goToInsta()
@@ -154,6 +156,7 @@ time.sleep(randint(1,3))
 
 #insta.likePhotos(74)
 #time.sleep(randint(1,3))
+
 
 
 
