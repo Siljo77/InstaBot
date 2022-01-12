@@ -39,12 +39,14 @@ class InstaBot():
     
     def notification_2(self):
         bot = self.bot
-        ui.WebDriverWait(bot, 7).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
+        ui.WebDriverWait(bot,10).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
         
         
     def notification_3(self):
         bot = self.bot
-        ui.WebDriverWait(bot, 3).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[5]/div/div/div/div[3]/button[2]"))).click() 
+        ui.WebDriverWait(bot,20).until(EC.element_to_be_clickable((By.CLASS_NAME, "aOOlW.HoLwm"))).click() 
+        #not_3 = bot.find_element_by_xpath("/html/body/div[5]/div/div/div/div[3]/button[2]")
+        #not_3.click()
         
         
     def person(self,person):
@@ -52,7 +54,16 @@ class InstaBot():
         bot.get("https://www.instagram.com/" + person + '/')
         self.likeFirstPhoto()
         #self.likePhotos()
+       
                                    
+    def follow(self):
+        bot = self.bot
+        try:
+            follow_button = bot.find_element_by_xpath("//*[text()='Follow']")
+            follow_button.click()
+        except:
+             pass
+    
     
     def like(self):
         bot = self.bot
@@ -80,14 +91,6 @@ class InstaBot():
         next_pikcure = bot.find_element_by_xpath("html/body/div[6]/div[1]/div/div/div/button")
         next_pikcure.click()
         
-        
-    def follow(self):
-        bot = self.bot
-        try:
-            follow_button = bot.find_element_by_xpath("//*[text()='Follow']")
-            follow_button.click()
-        except:
-             pass
        
         
     def likePhotos(self,amount):
@@ -106,13 +109,12 @@ class InstaBot():
             next = bot.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div[2]/button')
             next.click()
             
-    
             i += 1
             
             
     def hashtag(self,hashtag):
         bot = self.bot
-        hashtag = ['bangtan'] #'robotica','seleniumwebdriver','pythonprogramming','instabots','bots',
+        hashtag = ['robotica','seleniumwebdriver','pythonprogramming','instabots','bots',] #'robotica','seleniumwebdriver','pythonprogramming','instabots','bots',
         for has in hashtag:
             time.sleep(randint(1,3))
             bot.get("https://www.instagram.com/explore/tags/" + has + '/')
@@ -123,39 +125,71 @@ class InstaBot():
             
     
         bot.get('https://www.instagram.com/' + 'robotantonio6')
+       
         
-      
-    
-insta = InstaBot('robotantonio6','robotantonio66')
+    def scrollFollowers(self):
+        bot = self.bot
+        bot.get('https://www.instagram.com/' + 'ivan_sijan')
+        
+        bot.find_element_by_partial_link_text("follower").click()
+  
+        pop_up_window = WebDriverWait(bot, 4).until(EC.element_to_be_clickable((By.XPATH, "//div[@class='isgrP']")))
 
+            
+        last_ht, ht = 0,1
+        while last_ht != ht:
+            last_ht = ht
+            time.sleep(randint(1,2))
+            ht = bot.execute_script("""arguments[0].scrollTo(0, arguments[0].scrollHeight); 
+                return arguments[0].scrollHeight;
+                """, pop_up_window)
+        links = pop_up_window.find_elements_by_tag_name("a")
+        names = [name.text for name in links if name.text != '']
+        print(names)
+            
+            
+            
+            
+          
+            
+    
+            
+    
+            
+            
+            
+insta = InstaBot('robotantonio6','robotantonio66')
+#insta = InstaBot('ivan.sijan@gmail.com','Medvescak77')
 insta.fullSizeScreen()
 
 insta.goToInsta()
 time.sleep(randint(1,2))
 
 insta.notification_1()
-time.sleep(randint(1,3))
+time.sleep(randint(1,4))
 
 insta.login()
 time.sleep(randint(1,5))
 
 insta.notification_2()
-time.sleep(randint(1,3))
+time.sleep(randint(1,9))
 
 insta.notification_3()
-time.sleep(randint(1,3))
+time.sleep(randint(1,8))
 
-insta.hashtag('has')
-time.sleep(randint(1,3))
+insta.scrollFollowers()
+time.sleep(randint(1,5))
+
+
+
+
+#insta.hashtag('has')
+#time.sleep(randint(1,3))
 
 #insta.person('bogda2709')
 #time.sleep(randint(1,3))
 
-#insta.likeFirstPhoto()
-#time.sleep(randint(1,3))
 
-#insta.likePhotos(74)
-#time.sleep(randint(1,3))
 
 
 
