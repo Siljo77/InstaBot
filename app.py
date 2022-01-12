@@ -39,7 +39,7 @@ class InstaBot():
     
     def notification_2(self):
         bot = self.bot
-        ui.WebDriverWait(bot,10).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
+        ui.WebDriverWait(bot,20).until(EC.element_to_be_clickable((By.CLASS_NAME, "cmbtv"))).click() 
         
         
     def notification_3(self):
@@ -125,17 +125,33 @@ class InstaBot():
             
     
         bot.get('https://www.instagram.com/' + 'robotantonio6')
-       
+    
         
-    def scrollFollowers(self):
+    def get_unfollowers(self):
         bot = self.bot
-        bot.get('https://www.instagram.com/' + 'ivan_sijan')
+        bot.get('https://www.instagram.com/' + 'robotantonio6')
         
+        # open a window with followers
         bot.find_element_by_partial_link_text("follower").click()
-  
+        follovers = self.get_names()
+        time.sleep(randint(1,3))
+        
+        bot.get('https://www.instagram.com/' + 'robotantonio6')
+        
+        bot.find_element_by_partial_link_text("following").click()
+        following = self.get_names()
+        
+        
+        not_following_back = [user for user in following if user not in follovers]
+        print(not_following_back)
+        
+        
+        
+    def get_names(self):
+        bot = self.bot
         pop_up_window = WebDriverWait(bot, 4).until(EC.element_to_be_clickable((By.XPATH, "//div[@class='isgrP']")))
 
-            
+        # scroll the pop_up_window window to the end of the list
         last_ht, ht = 0,1
         while last_ht != ht:
             last_ht = ht
@@ -143,21 +159,17 @@ class InstaBot():
             ht = bot.execute_script("""arguments[0].scrollTo(0, arguments[0].scrollHeight); 
                 return arguments[0].scrollHeight;
                 """, pop_up_window)
+            
+        # finde all the a tags in the followers list
         links = pop_up_window.find_elements_by_tag_name("a")
+        
+        # put all the names in the names list 
         names = [name.text for name in links if name.text != '']
-        print(names)
-            
-            
-            
-            
-          
-            
-    
-            
-    
-            
-            
-            
+        return(names)
+        
+        bot.get('https://www.instagram.com/' + 'robotantonio6')
+
+
 insta = InstaBot('robotantonio6','robotantonio66')
 #insta = InstaBot('ivan.sijan@gmail.com','Medvescak77')
 insta.fullSizeScreen()
@@ -166,20 +178,20 @@ insta.goToInsta()
 time.sleep(randint(1,2))
 
 insta.notification_1()
-time.sleep(randint(1,4))
+time.sleep(randint(1,3))
 
 insta.login()
-time.sleep(randint(1,5))
+time.sleep(randint(1,3))
 
 insta.notification_2()
-time.sleep(randint(1,9))
+time.sleep(randint(1,3))
 
 insta.notification_3()
-time.sleep(randint(1,8))
+time.sleep(randint(1,3))
 
-insta.scrollFollowers()
-time.sleep(randint(1,5))
 
+insta.get_unfollowers()
+time.sleep(randint(1,3))
 
 
 
