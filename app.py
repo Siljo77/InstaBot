@@ -57,7 +57,7 @@ class InstaBot():
     def follow(self):
         bot = self.bot
         try:
-            follow_button = bot.find_element_by_xpath("//*[text()='Follow']")
+            follow_button = bot.find_element_by_class_name("sqdOP.yWX7d.y3zKF")
             follow_button.click()
         except:
              pass
@@ -67,7 +67,7 @@ class InstaBot():
         bot = self.bot
          # like the pikcure
         try:
-            like_if = bot.find_element_by_xpath("/html/body/div[6]/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/button/div[2]")
+            like_if = bot.find_element_by_class_name("QBdPU.rrUvL")
             like_if.click()
         except:
              pass
@@ -86,7 +86,7 @@ class InstaBot():
         self.follow()
         time.sleep(randint(1,3))
         # click next pikcure
-        next_pikcure = bot.find_element_by_xpath("html/body/div[6]/div[1]/div/div/div/button")
+        next_pikcure = bot.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/button")
         next_pikcure.click()
         
        
@@ -104,7 +104,7 @@ class InstaBot():
             self.follow()
             time.sleep(randint(1,2))
             # next pikcure
-            next = bot.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div[2]/button')
+            next = bot.find_element_by_xpath('/html/body/div[6]/div[2]/div/div[2]/button')
             next.click()
             
             i += 1
@@ -112,7 +112,7 @@ class InstaBot():
             
     def hashtag(self,hashtag):
         bot = self.bot
-        hashtag = ['robotica','seleniumwebdriver','pythonprogramming','instabots','bots',] #'robotica','seleniumwebdriver','pythonprogramming','instabots','bots',
+        hashtag = ['seleniumwebdriver','pythonprogramming','instabots','bots',] #'robotica','seleniumwebdriver','pythonprogramming','instabots','bots',
         for has in hashtag:
             time.sleep(randint(1,3))
             bot.get("https://www.instagram.com/explore/tags/" + has + '/')
@@ -197,13 +197,14 @@ time.sleep(randint(1,3))
 insta.notification_3()
 time.sleep(randint(1,3))
 
-insta.get_unfollowers()
-time.sleep(randint(1,3))
-
-insta.unfollow()
-
-#insta.hashtag('has')
+#insta.get_unfollowers()
 #time.sleep(randint(1,3))
+
+#insta.unfollow()
+#time.sleep(randint(1,3))
+
+insta.hashtag('has')
+time.sleep(randint(1,3))
 
 #insta.person('bogda2709')
 #time.sleep(randint(1,3))
