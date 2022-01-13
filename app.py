@@ -56,6 +56,7 @@ class InstaBot():
                                    
     def follow(self):
         bot = self.bot
+        # follow the users
         try:
             follow_button = bot.find_element_by_class_name("sqdOP.yWX7d.y3zKF")
             follow_button.click()
@@ -65,7 +66,7 @@ class InstaBot():
     
     def like(self):
         bot = self.bot
-         # like the pikcure
+         # like the pikcures
         try:
             like_if = bot.find_element_by_class_name("QBdPU.rrUvL")
             like_if.click()
@@ -112,9 +113,12 @@ class InstaBot():
             
     def hashtag(self,hashtag):
         bot = self.bot
+        # hashtags list
         hashtag = ['seleniumwebdriver','pythonprogramming','instabots','bots',] #'robotica','seleniumwebdriver','pythonprogramming','instabots','bots',
         for has in hashtag:
             time.sleep(randint(1,3))
+            
+            # go to every hastag in the list
             bot.get("https://www.instagram.com/explore/tags/" + has + '/')
             time.sleep(randint(1,3))
             self.likeFirstPhoto()
@@ -138,7 +142,7 @@ class InstaBot():
                 return arguments[0].scrollHeight;
                 """, pop_up_window)
             
-        # finde all the a tags in the followers list
+        # finde all the tags in the followers list
         links = pop_up_window.find_elements_by_tag_name("a")
         
         # put all the names in the names list 
@@ -156,9 +160,11 @@ class InstaBot():
         
         bot.get('https://www.instagram.com/' + 'robotantonio6')
         
+        #open a window with following
         bot.find_element_by_partial_link_text("following").click()
         following = self.get_names()
         
+        # check which users are not following back
         self.not_following_back = [user for user in following if user not in follovers]
         print(self.not_following_back)
         
@@ -170,10 +176,16 @@ class InstaBot():
         
         for user in self.not_following_back:
             time.sleep(randint(1,3))
+            
+            # open every user which is not following back
             bot.get('https://www.instagram.com/' + user)
+            
+            # open unfollow window
             unfollow_button = bot.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div[2]/div/span/span[1]/button/div/span")
             unfollow_button.click()
             time.sleep(randint(1,3))
+            
+            # unfollow user
             unfollow = bot.find_element_by_class_name("aOOlW.-Cab_")
             unfollow.click()
             
