@@ -45,8 +45,6 @@ class InstaBot():
     def notification_3(self):
         bot = self.bot
         ui.WebDriverWait(bot,20).until(EC.element_to_be_clickable((By.CLASS_NAME, "aOOlW.HoLwm"))).click() 
-        #not_3 = bot.find_element_by_xpath("/html/body/div[5]/div/div/div/div[3]/button[2]")
-        #not_3.click()
         
         
     def person(self,person):
@@ -161,11 +159,25 @@ class InstaBot():
         bot.find_element_by_partial_link_text("following").click()
         following = self.get_names()
         
-        not_following_back = [user for user in following if user not in follovers]
-        print(not_following_back)
+        self.not_following_back = [user for user in following if user not in follovers]
+        print(self.not_following_back)
         
 
-           
+    def unfollow(self):
+        bot = self.bot
+        
+        self.not_following_back
+        
+        for user in self.not_following_back:
+            time.sleep(randint(1,3))
+            bot.get('https://www.instagram.com/' + user)
+            unfollow_button = bot.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div[2]/div/span/span[1]/button/div/span")
+            unfollow_button.click()
+            time.sleep(randint(1,3))
+            unfollow = bot.find_element_by_class_name("aOOlW.-Cab_")
+            unfollow.click()
+            
+        
 insta = InstaBot('robotantonio6','robotantonio66')
 #insta = InstaBot('ivan.sijan@gmail.com','Medvescak77')
 insta.fullSizeScreen()
@@ -187,6 +199,8 @@ time.sleep(randint(1,3))
 
 insta.get_unfollowers()
 time.sleep(randint(1,3))
+
+insta.unfollow()
 
 #insta.hashtag('has')
 #time.sleep(randint(1,3))
