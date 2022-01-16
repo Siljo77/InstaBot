@@ -181,7 +181,7 @@ class InstaBot():
             bot.get('https://www.instagram.com/' + user)
             
             # open unfollow window
-            unfollow_button = bot.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div[2]/div/span/span[1]/button/div/span")
+            unfollow_button = bot.find_element_by_class_name("qF0y9.Igw0E.rBNOH.YBx95._4EzTm")
             unfollow_button.click()
             time.sleep(randint(1,3))
             
@@ -209,14 +209,14 @@ time.sleep(randint(1,3))
 insta.notification_3()
 time.sleep(randint(1,3))
 
-#insta.get_unfollowers()
-#time.sleep(randint(1,3))
-
-#insta.unfollow()
-#time.sleep(randint(1,3))
-
-insta.hashtag('has')
+insta.get_unfollowers()
 time.sleep(randint(1,3))
+
+insta.unfollow()
+time.sleep(randint(1,3))
+
+#nsta.hashtag('has')
+#ime.sleep(randint(1,3))
 
 #insta.person('bogda2709')
 #time.sleep(randint(1,3))
