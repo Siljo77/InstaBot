@@ -190,8 +190,7 @@ class InstaBot():
             unfollow.click()
             
         
-insta = InstaBot('robotantonio6','robotantonio66')
-#insta = InstaBot('ivan.sijan@gmail.com','Medvescak77')
+insta = InstaBot()
 insta.fullSizeScreen()
 
 insta.goToInsta()
